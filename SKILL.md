@@ -11,7 +11,7 @@ backed by a **peg** on the parent. **Signers order blocks; users enforce the rul
 trusted from a server: a client finds the chain from a signed announcement on public Nostr
 relays, reads its blocks from a static mirror, and validates every one itself.
 
-Read: the spec at https://sidestr.com/spec/ (draft 0.0.4; sections 3 chain, 6 peg-in, 7 peg-out,
+Read: the white paper at https://sidestr.com/spec/paper/sidestr.pdf (why the system is shaped as it is, the trust at each level, what has run) and the spec at https://sidestr.com/spec/ (draft 0.0.4; sections 3 chain, 6 peg-in, 7 peg-out,
 9 levels, 11 distribution, 12 assets, appendix A event kinds). Source and reference
 implementation: https://github.com/sidestr/spec (`siding/`). Client library and command:
 https://github.com/sidestr/sidestr. Sibling protocol for mining pools: https://datstr.com/.
