@@ -9,7 +9,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f766e'/%3E%3Crect x='7' y='14' width='18' height='4' rx='2' fill='%23fff'/%3E%3Crect x='7' y='21' width='11' height='4' rx='2' fill='%23fff' opacity='.7'/%3E%3C/svg%3E">
 <meta property="og:site_name" content="sidestr">
 <meta property="og:title" content="sidestr">
-<meta property="og:description" content="Signers order blocks; users enforce the rules. User activated sidechains beside Bitcoin and its BLAKE2b fork: signed blocks, no subsidy, pegged coins, rules as documents.">
+<meta property="og:description" content="Signers order blocks; users enforce the rules. User activated sidechains beside a Bitcoin-family chain, stock or the BLAKE2b fork: signed blocks, no subsidy, pegged coins, rules as documents.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://sidestr.com/">
 <meta property="og:image" content="https://sidestr.com/og.png?v=1">
@@ -18,7 +18,7 @@
 <meta property="og:image:alt" content="sidestr: signers order blocks, users enforce the rules">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="sidestr">
-<meta name="twitter:description" content="Signers order blocks; users enforce the rules. User activated sidechains for Bitcoin and its BLAKE2b fork.">
+<meta name="twitter:description" content="Signers order blocks; users enforce the rules. User activated sidechains beside Bitcoin, stock or its BLAKE2b fork.">
 <meta name="twitter:image" content="https://sidestr.com/og.png?v=1">
 <style>
   :root{--bg:#fff;--fg:#16181d;--mut:#5b6470;--bd:#e6e8eb;--pan:#fafbfc;--ac:#0f766e;--ac2:#0969da;--good:#1a7f37;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
@@ -82,9 +82,9 @@
 <header class="hero"><div class="wrap">
   <p class="name"><b>U</b>ser <b>A</b>ctivated <b>S</b>idechains</p>
   <h1>Signers order blocks.<br>Users enforce the <em>rules</em>.</h1>
-  <p class="sub">sidestr is a way to run a chain beside Bitcoin or its BLAKE2b fork: Bitcoin's transaction rules, blocks that are valid because they are signed, no subsidy, and every coin a coin locked on the parent with a refund path. The rules are documents with activation heights, and a node applies one because its operator adopted it.</p>
+  <p class="sub">sidestr is a way to run a chain beside Bitcoin: its transaction rules, blocks that are valid because they are signed, no subsidy, and every coin a coin locked on the parent with a refund path. The parent is any Bitcoin-family chain, stock or the BLAKE2b fork, mainnet or test, or another siding. The rules are documents with activation heights, and a node applies one because its operator adopted it.</p>
   <div class="cta"><a class="btn p" href="/spec/">Read the spec</a><a class="btn" href="https://github.com/sidestr/spec">Source</a></div>
-  <p class="status">Draft 0.0.1, 15 September 2026. Three chains beside the BLAKE2b testnet4, 150 test coins pegged, one signer each, validated by the same engine that runs datstr. Next: a browser validator, a public transaction endpoint, peg-in claims, a faucet.</p>
+  <p class="status">Draft 0.0.4, October 2026. Chains run beside both the BLAKE2b testnet4 and stock testnet4, at levels 1 and 2, each validated in the browser by the same engine that runs datstr. Faucets, peg-ins from a browser key, an asset-and-pool chain and an EVM chain are live. One npm package, one command.</p>
 </div></header>
 
 <div class="wrap">
@@ -115,7 +115,7 @@
 
   <h2 class="shead">In your browser</h2>
   <div class="prose">
-    <p>A siding is an overlay on the same engine that validates Bitcoin and its BLAKE2b fork in a tab: the network beside its parent, and one rule for the block signature, evaluated by the engine's own script interpreter. A validator needs no key, no hash and no permission, syncs from any mirror, and agrees with the producer at every height or says exactly where it stopped. Genesis is deterministic from the chain document: the same file gives the same block 0, byte for byte.</p>
+    <p>A siding is an overlay on the same engine that validates Bitcoin, stock or its BLAKE2b fork, in a tab: the network beside its parent, and one rule for the block signature, evaluated by the engine's own script interpreter. A validator needs no key, no hash and no permission, syncs from any mirror, and agrees with the producer at every height or says exactly where it stopped. Genesis is deterministic from the chain document: the same file gives the same block 0, byte for byte.</p>
     <p>Blocks are receipts for transactions. A producer idles when it has nothing to include and keeps a heartbeat so timelocks keep moving. A chain is a JSON document and a key, which makes a siding cheap enough to make one per project, per agent, or per afternoon.</p>
   </div>
 
@@ -126,6 +126,7 @@
     <tr><td><code>sidestr:aatest</code></td><td>Knots BLAKE2b testnet4</td><td>25 tBTC</td><td><code>ta</code></td><td><code>63993fae…7a7e</code></td></tr>
     <tr><td><code>sidestr:aastage</code></td><td>Knots BLAKE2b testnet4</td><td>25 tBTC</td><td><code>tg</code></td><td><code>580c4ad4…dff6</code></td></tr>
   </table>
+  <p class="prose">These are a sample. More chains are in the <a href="https://play-grounds.github.io/sidestr/">directory</a>, including ones beside stock testnet4, a level-2 federation, an asset-and-pool chain and an EVM chain.</p>
 
   <h2 class="shead">What it stands on</h2>
   <ul class="pr">
@@ -147,7 +148,7 @@
     <a href="https://bitcoin-kernel.com/">bitcoin-kernel</a>
     <a href="https://jss.live/">JSS</a>
   </div>
-  <p class="fnote">sidestr: user activated sidechains. Draft 0.0.1, 15 September 2026. This page makes no external calls.</p>
+  <p class="fnote">sidestr: user activated sidechains. Draft 0.0.4, October 2026. This page makes no external calls.</p>
 </div></footer>
 </body>
 </html>
