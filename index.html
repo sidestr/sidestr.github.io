@@ -6,149 +6,456 @@
 <title>sidestr - user activated sidechains</title>
 <meta name="description" content="User activated sidechains: Bitcoin's rules beside a Bitcoin-family chain, blocks valid because they are signed, no subsidy, every coin a coin locked on the parent, and the rules carried as signed documents each node chooses to adopt. Signers order blocks; users enforce the rules.">
 <link rel="canonical" href="https://sidestr.com/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f766e'/%3E%3Crect x='7' y='14' width='18' height='4' rx='2' fill='%23fff'/%3E%3Crect x='7' y='21' width='11' height='4' rx='2' fill='%23fff' opacity='.7'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2317211b'/%3E%3Crect x='7' y='14' width='18' height='4' rx='2' fill='%23f7f8f3'/%3E%3Crect x='7' y='21' width='11' height='4' rx='2' fill='%23ed7c2c'/%3E%3C/svg%3E">
 <meta property="og:site_name" content="sidestr">
 <meta property="og:title" content="sidestr">
 <meta property="og:description" content="Signers order blocks; users enforce the rules. User activated sidechains beside a Bitcoin-family chain, stock or the BLAKE2b fork: signed blocks, no subsidy, pegged coins, rules as documents.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://sidestr.com/">
-<meta property="og:image" content="https://sidestr.com/og.png?v=1">
+<meta property="og:image" content="https://sidestr.com/og.png?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="sidestr: signers order blocks, users enforce the rules">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="sidestr">
 <meta name="twitter:description" content="Signers order blocks; users enforce the rules. User activated sidechains beside Bitcoin, stock or its BLAKE2b fork.">
-<meta name="twitter:image" content="https://sidestr.com/og.png?v=1">
+<meta name="twitter:image" content="https://sidestr.com/og.png?v=2">
 <style>
-  :root{--bg:#fff;--fg:#16181d;--mut:#5b6470;--bd:#e6e8eb;--pan:#fafbfc;--ac:#0f766e;--ac2:#0969da;--good:#1a7f37;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-  *{box-sizing:border-box}html{scroll-behavior:smooth}
-  body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
-  a{color:var(--ac2);text-decoration:none}a:hover{text-decoration:underline}
-  .wrap{max-width:940px;margin:0 auto;padding:0 1.5rem}
-  nav{border-bottom:1px solid var(--bd)}
-  nav .wrap{display:flex;align-items:center;gap:1.3rem;height:56px}
-  nav .brand{font-weight:700;letter-spacing:-.3px;margin-right:auto;color:var(--fg);font-size:1rem}nav .brand b{color:var(--ac)}
-  nav a{color:var(--mut);font-size:.9rem;font-weight:500}nav a.on{color:var(--fg)}
-  .status{margin:1.6rem auto 0;max-width:40rem;font-size:.84rem;color:var(--mut);line-height:1.5}
-  header.hero{padding:3.2rem 0 1.2rem;text-align:center}
-  h1{font-size:2.7rem;line-height:1.05;letter-spacing:-1.2px;margin:0;font-weight:800}
-  h1 em{font-style:italic;color:var(--ac)}
-  .name{margin:0 0 1rem;color:var(--ac);font:600 .95rem/1.4 var(--mono);letter-spacing:2.5px;text-transform:uppercase}
-  .name b{font-size:1.35em;font-weight:800;letter-spacing:0}
-  @media(max-width:640px){.name{font-size:.72rem;letter-spacing:1.5px}}
-  .sub{font-size:1.14rem;color:#37414d;margin:1rem auto 0;max-width:40rem;line-height:1.5}
-  .cta{display:flex;gap:.8rem;justify-content:center;margin:1.6rem 0 0;flex-wrap:wrap}
-  .btn{display:inline-block;padding:.65rem 1.2rem;border-radius:10px;font-weight:600;font-size:.95rem;border:1px solid var(--bd);color:var(--fg);background:#fff}
-  .btn.p{background:var(--ac);border-color:var(--ac);color:#fff}.btn:hover{text-decoration:none;border-color:var(--ac)}
-  .shead{text-align:center;font-size:1.9rem;font-weight:800;letter-spacing:-.6px;margin:3.2rem 0 0}
-  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;margin-top:1.6rem}
-  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:1.6rem}
-  .grid3 h3,.grid4 h3{margin:0 0 .35rem;font-size:1.05rem;letter-spacing:-.2px}
-  .grid3 p,.grid4 p{margin:0;color:var(--mut);font-size:.92rem;line-height:1.55}
-  .grid4 > div{border:1px solid var(--bd);border-radius:12px;padding:1rem 1.1rem;background:var(--pan)}
-  .grid4 .k{font:700 .72rem var(--mono);letter-spacing:2px;color:var(--ac);text-transform:uppercase;margin-bottom:.4rem}
-  .flow{margin:1.6rem auto 0;padding:1.4rem 1.2rem;border:1px solid var(--bd);border-radius:16px;box-shadow:0 8px 30px rgba(16,18,29,.06);display:flex;align-items:flex-start;justify-content:center;gap:.4rem}
-  .step{flex:1 1 0;min-width:0;text-align:center}
-  .box{display:inline-block;padding:.5rem .9rem;border:1px solid var(--bd);border-radius:10px;background:var(--pan);font:600 .95rem var(--mono);white-space:nowrap}
-  .box.hi{background:var(--ac);border-color:var(--ac);color:#fff}
-  .cap{margin:.5rem auto 0;max-width:13rem;font-size:.78rem;line-height:1.4;color:var(--mut)}.cap code{font:.76rem var(--mono)}
-  .arr{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:.25rem;padding-top:.6rem;color:var(--mut);font:600 .72rem var(--mono);letter-spacing:.5px}
-  .arr .ah{color:#b8bec7;display:block}
-  @media(max-width:640px){.flow{flex-direction:column;align-items:center;gap:.5rem}.arr{flex-direction:row;padding:0;gap:.5rem}.arr .ah{transform:rotate(90deg);width:34px}.cap{max-width:18rem}}
-  table{border-collapse:collapse;width:100%;margin-top:1.4rem;font-size:.92rem}
-  th,td{border-top:1px solid var(--bd);padding:.55rem .7rem;text-align:left;vertical-align:top}th{color:var(--mut);font-weight:600;font-size:.82rem;text-transform:uppercase;letter-spacing:1px}
-  td code{font:.86rem var(--mono)}
-  .prose{max-width:44rem;margin:1.2rem auto 0;color:#37414d;line-height:1.6}
-  .prose p{margin:.8rem 0}
-  ul.pr{max-width:44rem;margin:1.2rem auto 0;padding-left:1.2rem;color:#37414d}ul.pr li{margin:.4rem 0}
-  @media(max-width:760px){.grid4{grid-template-columns:1fr 1fr}}
-  @media(max-width:640px){.grid3{grid-template-columns:1fr;gap:1.1rem}.grid4{grid-template-columns:1fr}h1{font-size:2.1rem}}
-  footer{margin-top:3rem;padding:2rem 0;border-top:1px solid var(--bd);color:var(--mut);font-size:.85rem}
-  footer .links{display:flex;gap:1.4rem;flex-wrap:wrap;margin-bottom:.9rem}
-  .fnote{font:.8rem/1.6 var(--mono);color:var(--mut);max-width:54rem}
+  :root{
+    --bg:#f7f8f3;--surface:#fff;--surface-warm:#fffdf8;--ink:#17211b;--muted:#5d685f;--soft:#667066;
+    --accent:#ed7c2c;--accent-dark:#b95216;--accent-soft:#fff0e3;--mint:#e8f0e8;--line:#dde3da;--dark:#18251e;
+    --display:Manrope,"DM Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --body:"DM Sans",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --shadow:0 30px 80px rgba(36,51,40,.09),0 3px 12px rgba(36,51,40,.04);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:96px}
+  body{overflow-x:hidden;background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:var(--display)}
+  a{color:inherit}
+  code{font-family:var(--mono);font-size:.86em;padding:1px 4px;border-radius:4px;background:#eceee7}
+  ::selection{background:#fbd4b6;color:var(--ink)}
+  :focus-visible{outline:3px solid rgba(237,124,44,.4);outline-offset:4px}
+  svg{display:block}
+  .container{width:min(1160px,calc(100% - 48px));margin-inline:auto}
+
+  /* header */
+  .site-header{position:sticky;top:0;z-index:100;border-bottom:1px solid var(--line);background:rgba(247,248,243,.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+  .navbar{height:76px;display:flex;align-items:center;gap:28px}
+  .brand{display:inline-flex;align-items:center;gap:11px;color:var(--ink);text-decoration:none;flex-shrink:0}
+  .brand-mark{width:34px;height:34px}
+  .brand-name{font-family:var(--display);font-size:22px;font-weight:800;letter-spacing:-.045em}
+  .brand-name b{color:var(--accent)}
+  .version{padding:3px 7px;border:1px solid var(--line);border-radius:6px;color:var(--muted);font:500 11px var(--mono)}
+  .nav-links{display:flex;align-items:center;gap:28px;margin-left:auto}
+  .nav-links a{position:relative;white-space:nowrap;color:#4f5a51;font-size:14px;font-weight:500;text-decoration:none}
+  .nav-links a::after{content:'';position:absolute;right:0;bottom:-6px;left:0;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:right;transition:transform 180ms ease}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+  .nav-actions{display:flex;align-items:center;gap:18px}
+  .github-link{display:inline-flex;color:var(--ink)}
+  .github-link svg{width:21px;height:21px}
+
+  /* buttons */
+  .button{display:inline-flex;min-height:50px;align-items:center;justify-content:center;gap:10px;padding:0 22px;border:1px solid transparent;border-radius:10px;font-size:14px;font-weight:600;line-height:1;text-decoration:none;transition:transform 180ms ease,background 180ms ease,border-color 180ms ease,box-shadow 180ms ease}
+  .button:hover{transform:translateY(-2px)}
+  .button svg{width:17px;height:17px;flex-shrink:0}
+  .button-dark{background:var(--ink);color:#fff;box-shadow:0 6px 16px rgba(23,33,27,.12)}
+  .button-dark:hover{background:#293a30;box-shadow:0 9px 22px rgba(23,33,27,.16)}
+  .button-light{border-color:var(--line);background:rgba(255,255,255,.7);color:var(--ink)}
+  .button-light:hover{border-color:#bdc8bc;background:#fff}
+  .button-small{min-height:41px;padding-inline:17px;border-radius:8px;font-size:13px}
+
+  /* hero */
+  .hero{position:relative;overflow:clip;padding:76px 0 54px}
+  .hero::before{content:'';position:absolute;top:-180px;right:-170px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(210,229,209,.65) 0%,rgba(247,248,243,0) 69%);pointer-events:none}
+  .hero-grid{position:relative;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:64px}
+  .eyebrow{display:inline-flex;flex-wrap:wrap;align-items:center;gap:9px;margin-bottom:26px;padding:7px 14px 7px 8px;border:1px solid #dbe3d7;border-radius:999px;background:rgba(255,255,255,.65);color:#4f5d51;font:500 11px/1.5 var(--mono);letter-spacing:.02em;text-transform:uppercase}
+  .eyebrow b{color:var(--accent-dark);font-weight:600}
+  .eyebrow-icon{display:grid;width:22px;height:22px;place-items:center;border-radius:50%;background:var(--accent-soft);color:var(--accent-dark)}
+  .eyebrow-icon svg{width:12px;height:12px}
+  h1{max-width:640px;font-size:clamp(50px,5.6vw,78px);font-weight:700;letter-spacing:-.06em;line-height:1.03}
+  h1 .line{display:block}
+  .headline-accent{position:relative;display:inline-block;color:#c2590f}
+  .headline-accent::after{content:'';position:absolute;right:3px;bottom:-6px;left:5px;height:9px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 12'%3E%3Cpath d='M2 8.5C65 2.5 155 3 238 5.5' fill='none' stroke='%23ed7c2c' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") center/100% 100% no-repeat;opacity:.65}
+  .hero-copy{max-width:560px;margin-top:28px;color:var(--muted);font-size:18px;line-height:1.7}
+  .hero-copy strong{color:var(--ink);font-weight:600}
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+  .hero-ctas .button{min-height:54px;padding-inline:24px}
+  .status{display:flex;gap:12px;align-items:flex-start;max-width:560px;margin-top:26px;padding:12px 15px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.45);color:#5c675e;font-size:13px;line-height:1.55}
+  .status .dot{flex-shrink:0;width:8px;height:8px;margin-top:6px;border-radius:50%;background:#2f7a45;box-shadow:0 0 0 4px rgba(47,122,69,.14)}
+  .status b{color:var(--ink);font-weight:600}
+
+  /* hero visual: the share flow */
+  .visual-wrap{position:relative;width:100%;max-width:470px;justify-self:end}
+  .visual-wrap::before{content:'';position:absolute;right:-24px;bottom:-24px;width:72%;height:60%;border-radius:30px;background:#dfe9dc;transform:rotate(4deg);z-index:-1}
+  .panel{overflow:hidden;border:1px solid rgba(206,215,203,.9);border-radius:24px;background:var(--surface-warm);box-shadow:var(--shadow)}
+  .panel-head{display:flex;align-items:center;justify-content:space-between;padding:15px 20px;border-bottom:1px solid #e6ebe2;color:#566156;font:500 11px var(--mono);letter-spacing:.05em;text-transform:uppercase}
+  .panel-head .dots{display:flex;gap:6px}
+  .panel-head .dots span{width:7px;height:7px;border-radius:50%;background:#cfd8cb}
+  .panel-head .dots span:first-child{background:var(--accent)}
+  .flow{padding:24px 26px 26px}
+  .node{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;padding:13px 16px;border:1.5px solid #c9d2c5;border-radius:12px;background:#fff}
+  .node .tag{min-width:112px;font:500 13px var(--mono);color:var(--ink)}
+  .node p{color:var(--muted);font-size:12.5px;line-height:1.45}
+  .node.you{border-color:#9db7a3}.node.you .tag{color:#2f5a3c}
+  .node.hi{border-color:var(--accent);background:#fffaf5}.node.hi .tag{color:var(--accent-dark)}
+  .node.out{border-color:var(--ink);background:var(--mint)}
+  .link{display:flex;align-items:center;gap:10px;padding:7px 0 7px 22px;color:var(--muted);font:500 11px var(--mono);letter-spacing:.03em}
+  .link::before{content:'';width:1.5px;height:20px;background:#c9d2c5}
+  .link span::before{content:'↓ ';color:var(--accent)}
+
+  .principles{position:relative;display:flex;flex-wrap:wrap;align-items:center;gap:16px 30px;margin-top:62px;padding-top:24px;border-top:1px solid var(--line)}
+  .principles-label{margin-right:auto;color:var(--soft);font:11px var(--mono);letter-spacing:.05em;text-transform:uppercase}
+  .principle{display:inline-flex;align-items:center;gap:8px;color:#4f5a51;font-size:13px;font-weight:500}
+  .principle svg{width:15px;height:15px;color:var(--accent)}
+
+  /* sections */
+  .section{padding:104px 0}
+  .kicker{margin-bottom:16px;color:var(--accent-dark);font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+  .section-title{max-width:720px;font-size:clamp(36px,4vw,54px);font-weight:600;letter-spacing:-.055em;line-height:1.12}
+  .section-intro{max-width:620px;margin-top:22px;color:var(--muted);font-size:17px;line-height:1.7}
+  .section-intro a,.prose a,.feature-card a,.step a{color:var(--accent-dark);text-underline-offset:3px}
+
+  .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:52px}
+  .feature-card{padding:28px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.58);transition:transform 200ms ease,box-shadow 200ms ease,border-color 200ms ease}
+  .feature-card:hover{border-color:#cbd5c7;box-shadow:0 18px 40px rgba(41,54,43,.06);transform:translateY(-5px)}
+  .feature-icon{display:grid;width:46px;height:46px;place-items:center;margin-bottom:26px;border-radius:12px;background:var(--accent-soft);color:var(--accent-dark)}
+  .feature-card:nth-child(2) .feature-icon{background:#e5eee3;color:#55705a}
+  .feature-card:nth-child(3) .feature-icon{background:#ebe9f1;color:#6c6482}
+  .feature-icon svg{width:22px;height:22px}
+  .feature-card h3{margin-bottom:12px;font-size:20px;font-weight:700;letter-spacing:-.035em}
+  .feature-card p{color:var(--muted);font-size:14.5px;line-height:1.7}
+
+  .band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#eff3ec}
+  .layers-grid{display:grid;grid-template-columns:.9fr 1.1fr;align-items:start;gap:64px;margin-top:60px}
+  .steps{border-top:1px solid #d4ddd1}
+  .step{display:grid;grid-template-columns:42px 1fr;gap:20px;padding:22px 0;border-bottom:1px solid #d4ddd1}
+  .step-number{display:grid;width:35px;height:35px;place-items:center;border:1px solid #cdd7c9;border-radius:50%;color:#566156;font:12px var(--mono);background:var(--surface-warm)}
+  .step .k{color:var(--accent-dark);font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase}
+  .step h3{margin-top:2px;font-size:17px;font-weight:700;letter-spacing:-.025em}
+  .step p{max-width:460px;margin-top:4px;color:#6b756a;font-size:14px;line-height:1.65}
+
+  .card{position:sticky;top:110px;overflow:hidden;border:1px solid #d4ddd0;border-radius:20px;background:var(--surface);box-shadow:0 20px 50px rgba(48,66,51,.06)}
+  .card-head{display:flex;align-items:center;justify-content:space-between;padding:17px 22px;border-bottom:1px solid #e6ebe2;color:#566156;font:500 11px var(--mono);letter-spacing:.05em;text-transform:uppercase}
+  .card-head svg{width:17px;height:17px;color:var(--accent)}
+  .card-scroll{overflow-x:auto}
+  table{width:100%;min-width:420px;border-collapse:collapse;font-size:14px}
+  th,td{padding:14px 22px;border-bottom:1px solid #e6ebe2;text-align:left;vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  th{color:#566156;font:500 11px var(--mono);letter-spacing:.04em;text-transform:uppercase}
+  td:first-child code{color:var(--accent-dark);background:var(--accent-soft)}
+  td{color:var(--ink)}td.m{color:var(--muted)}td:nth-child(3){white-space:nowrap}
+  .card-foot{padding:16px 22px;border-top:1px solid #e6ebe2;background:#f3f6ef;color:var(--muted);font-size:13px;line-height:1.55}
+
+  .build-grid{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:80px}
+  .prose p{margin-top:20px;color:var(--muted);font-size:16px;line-height:1.75}
+  .prose .kicker{margin-top:0;color:var(--accent-dark);font:500 11px var(--mono);letter-spacing:.08em}
+  .prose h3{margin-top:38px;font-size:22px;font-weight:700;letter-spacing:-.035em}
+  .code-window{overflow:hidden;border-radius:20px;background:var(--dark);box-shadow:0 28px 65px rgba(24,37,30,.16)}
+  .code-header{display:flex;align-items:center;justify-content:space-between;padding:16px 21px;border-bottom:1px solid #304036}
+  .code-header .dots{display:flex;gap:6px}
+  .code-header .dots span{width:7px;height:7px;border-radius:50%;background:#506056}
+  .code-header .dots span:first-child{background:#d5854f}
+  .code-filename{color:#a9b5ab;font:11px var(--mono)}
+  .code-window ol{list-style:none;padding:26px 26px 28px;color:#dce6dd;font:12.5px/1.85 var(--mono);counter-reset:l}
+  .code-window li{display:grid;grid-template-columns:28px 1fr;counter-increment:l}
+  .code-window li::before{content:counter(l);color:#5f7064}
+  .code-window .c{color:#8fa397}.code-window .kw{color:#e9a477}.code-window .fn{color:#b5cfa5}.code-window .ok{color:#9fd3a7}
+
+  .stands-layout{display:grid;grid-template-columns:.75fr 1.25fr;align-items:start;gap:90px}
+  .stands-list{list-style:none;border-top:1px solid var(--line)}
+  .stands-list li{display:grid;grid-template-columns:30px 1fr;gap:14px;padding:22px 0;border-bottom:1px solid var(--line);font-family:var(--display);font-size:16.5px;font-weight:600;letter-spacing:-.02em;line-height:1.5}
+  .stands-list li span{color:var(--muted);font-family:var(--body);font-size:14.5px;font-weight:400;letter-spacing:0}
+  .stands-list li::before{content:'';width:18px;height:18px;margin-top:4px;border-radius:6px;border:1.5px solid var(--accent);background:var(--accent-soft)}
+
+  .callout-section{padding:0 0 96px}
+  .callout{position:relative;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:56px;overflow:hidden;padding:62px 68px;border-radius:24px;background:#ed8135;color:#251c15}
+  .callout::after{content:'';position:absolute;right:-80px;bottom:-200px;width:500px;height:500px;border:1px solid rgba(255,255,255,.24);border-radius:50%;box-shadow:0 0 0 45px rgba(255,255,255,.04),0 0 0 90px rgba(255,255,255,.035);pointer-events:none}
+  .callout h2{max-width:560px;font-size:clamp(34px,3.8vw,50px);font-weight:700;letter-spacing:-.055em;line-height:1.12}
+  .callout p{max-width:520px;margin-top:18px;color:#3f2615;font-size:16px;line-height:1.7}
+  .callout-actions{position:relative;z-index:1;display:grid;gap:12px;justify-self:end}
+  .callout .button-light{background:rgba(255,255,255,.85)}
+
+  /* footer */
+  .site-footer{border-top:1px solid var(--line)}
+  .footer-main{display:flex;align-items:center;justify-content:space-between;gap:30px;padding:36px 0}
+  .footer-tagline{margin-top:6px;color:var(--soft);font-size:13px}
+  .footer-links{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px}
+  .footer-links a{color:#566156;font-size:13px;text-decoration:none}
+  .footer-links a:hover{color:var(--accent-dark)}
+  .footer-bottom{padding:16px 0 24px;border-top:1px solid var(--line);color:var(--soft);font:11px/1.7 var(--mono);letter-spacing:.02em}
+
+  table{min-width:640px}
+  td code{white-space:nowrap}
+  .hero-grid{grid-template-columns:1.3fr .7fr;gap:56px}
+  h1{max-width:none;font-size:clamp(46px,4.5vw,62px)}
+  td:first-child{white-space:nowrap}
+  .card-foot a{color:var(--accent-dark);text-underline-offset:3px}
+  @media (max-width:1000px){
+    .nav-links{display:none}
+    .nav-actions{margin-left:auto}
+    .hero-grid{grid-template-columns:1fr;gap:64px}
+    .visual-wrap{justify-self:start;max-width:560px}
+    .feature-grid{grid-template-columns:1fr 1fr}
+    .layers-grid,.build-grid,.stands-layout{grid-template-columns:1fr;gap:44px}
+    .card{position:static}
+    .callout{grid-template-columns:1fr;gap:32px;padding:52px 46px}
+    .callout-actions{justify-self:start;grid-auto-flow:column}
+  }
+  @media (max-width:600px){
+    .container{width:calc(100% - 32px)}
+    .navbar{height:66px;gap:14px}
+    .brand-name{font-size:20px}.brand-mark{width:30px;height:30px}
+    .version{display:none}
+    .hero{padding:44px 0 34px}
+    h1{font-size:clamp(42px,12.5vw,60px)}
+    h1 .line{display:inline}
+    .hero-copy{font-size:16px;line-height:1.65}
+    .hero-ctas{display:grid;grid-template-columns:1fr}
+    .eyebrow{font-size:10px;border-radius:14px}
+    .flow{padding:18px 14px}
+    .node{grid-template-columns:1fr;gap:4px;padding:12px 14px}
+    .visual-wrap::before{right:-8px;bottom:-14px}
+    .principles{margin-top:48px;gap:14px 20px}
+    .principles-label{width:100%}
+    .section{padding:72px 0}
+    .feature-grid{grid-template-columns:1fr;margin-top:36px}
+    .step{grid-template-columns:35px 1fr;gap:14px}
+    th,td{padding:12px 14px}
+    .callout-section{padding-bottom:64px}
+    .callout{padding:38px 24px;border-radius:19px}
+    .callout-actions{grid-auto-flow:row;width:100%}
+    .footer-main{flex-direction:column;align-items:flex-start}
+  }
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important}}
 </style>
 </head>
 <body>
-<nav><div class="wrap">
-  <a href="/" class="brand">side<b>·</b>str</a>
-  <a href="/" class="on">Overview</a>
-  <a href="/spec/">Spec</a>
-  <a href="/spec/paper/">Paper</a>
-  <a href="https://github.com/sidestr">GitHub</a>
-  <a href="https://datstr.com/">datstr</a>
-</div></nav>
-
-<header class="hero"><div class="wrap">
-  <p class="name"><b>U</b>ser <b>A</b>ctivated <b>S</b>idechains</p>
-  <h1>Signers order blocks.<br>Users enforce the <em>rules</em>.</h1>
-  <p class="sub">sidestr is a way to run a chain beside Bitcoin: its transaction rules, blocks that are valid because they are signed, no subsidy, and every coin a coin locked on the parent with a refund path. The parent is any Bitcoin-family chain, stock or the BLAKE2b fork, mainnet or test, or another siding. The rules are documents with activation heights, and a node applies one because its operator adopted it.</p>
-  <div class="cta"><a class="btn p" href="/spec/">Read the spec</a><a class="btn" href="https://github.com/sidestr/spec">Source</a></div>
-  <p class="status">Draft 0.0.4, October 2026. Chains run beside both the BLAKE2b testnet4 and stock testnet4, at levels 1 and 2, each validated in the browser by the same engine that runs datstr. Faucets, peg-ins from a browser key, an asset-and-pool chain and an EVM chain are live. One npm package, one command.</p>
-</div></header>
-
-<div class="wrap">
-  <div class="flow">
-    <div class="step"><div class="box">parent chain</div><div class="cap">Bitcoin, its BLAKE2b fork, or another siding</div></div>
-    <div class="arr"><span>peg-in</span><svg class="ah" viewBox="0 0 44 10" width="44" height="10" aria-hidden="true"><line x1="0" y1="5" x2="36" y2="5" stroke="currentColor" stroke-width="2"/><path d="M34 0 L44 5 L34 10 Z" fill="currentColor"/></svg></div>
-    <div class="step"><div class="box hi">siding</div><div class="cap">signed blocks, zero subsidy, supply equals the pegs</div></div>
-    <div class="arr"><span>blocks</span><svg class="ah" viewBox="0 0 44 10" width="44" height="10" aria-hidden="true"><line x1="0" y1="5" x2="36" y2="5" stroke="currentColor" stroke-width="2"/><path d="M34 0 L44 5 L34 10 Z" fill="currentColor"/></svg></div>
-    <div class="step"><div class="box hi">validators</div><div class="cap">any node, a phone in a tab included, checks every block and every rule</div></div>
-    <div class="arr"><span>peg-out</span><svg class="ah" viewBox="0 0 44 10" width="44" height="10" aria-hidden="true"><line x1="0" y1="5" x2="36" y2="5" stroke="currentColor" stroke-width="2"/><path d="M34 0 L44 5 L34 10 Z" fill="currentColor"/></svg></div>
-    <div class="step"><div class="box">parent chain</div><div class="cap">or the refund path, after a timelock, with nobody's permission</div></div>
+<header class="site-header">
+  <div class="container navbar">
+    <a class="brand" href="/" aria-label="sidestr home">
+      <svg class="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <rect width="40" height="40" rx="11" fill="#17211B"/>
+        <rect x="8.5" y="12" width="23" height="5" rx="2.5" fill="#F7F8F3"/>
+        <rect x="8.5" y="23" width="14" height="5" rx="2.5" fill="#ED7C2C"/>
+        <path d="M27 21v4.5" stroke="#F7F8F3" stroke-width="2.2" stroke-linecap="round" opacity=".55"/>
+      </svg>
+      <span class="brand-name">side<b>·</b>str</span>
+      <span class="version">draft 0.0.4</span>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#how">How it works</a>
+      <a href="#levels">Levels</a>
+      <a href="#browser">In your browser</a>
+      <a href="/spec/paper/">Paper</a>
+      <a href="https://datstr.com/">datstr</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="github-link" href="https://github.com/sidestr" aria-label="sidestr on GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .7a11.5 11.5 0 0 0-3.64 22.4c.58.1.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.52-1.34-1.28-1.7-1.28-1.7-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.57-.29-5.27-1.28-5.27-5.72 0-1.26.45-2.3 1.19-3.11-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.17 1.19a10.98 10.98 0 0 1 5.78 0c2.2-1.5 3.17-1.19 3.17-1.19.63 1.59.23 2.77.11 3.06.74.81 1.19 1.85 1.19 3.11 0 4.45-2.71 5.42-5.29 5.71.42.36.79 1.06.79 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg>
+      </a>
+      <a class="button button-dark button-small" href="/spec/">Read the spec
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
   </div>
+</header>
 
-  <h2 class="shead">How it works</h2>
-  <div class="grid3">
-    <div><h3>Pegged coins</h3><p>A peg-in is a taproot output on the parent whose key path is the peg holders' and whose script path refunds the pegger after a timelock. The sidechain mints exactly what is pegged and nothing else. A dead sidechain costs time, not coins.</p></div>
-    <div><h3>Signed blocks</h3><p>Bitcoin's rules with one added and one removed: a block must carry a signature satisfying the chain's challenge, in the shape <a href="https://github.com/bitcoin/bips/blob/master/bip-0325.mediawiki">BIP 325</a> gave signet, and the subsidy is zero. Fees go to the signer.</p></div>
-    <div><h3>Rules as documents</h3><p>A rule change is a signed document with an activation height. A node follows the keys its operator chose, shows the text before applying anything new, and refuses what it did not adopt. Signers can stall a chain; they cannot change it.</p></div>
+<main>
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m12 3 2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2L12 3Z"/></svg></span>
+            <span><b>U</b>ser <b>A</b>ctivated <b>S</b>idechains</span>
+          </div>
+          <h1>
+            <span class="line">Signers order blocks.</span>
+            <span class="line">Users enforce the <span class="headline-accent">rules.</span></span>
+          </h1>
+          <p class="hero-copy">sidestr is a way to run a chain beside Bitcoin: its transaction rules, <strong>blocks that are valid because they are signed</strong>, no subsidy, and <strong>every coin a coin locked on the parent</strong> with a refund path. The parent is any Bitcoin-family chain, stock or the BLAKE2b fork, mainnet or test, or another siding. The rules are documents with activation heights, and a node applies one because its operator adopted it.</p>
+          <div class="hero-ctas">
+            <a class="button button-dark" href="/spec/">Read the spec
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="button button-light" href="/spec/paper/">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M6 3h9l4 4v14H6V3Z"/><path d="M14 3v5h5M9 12h7M9 16h7"/></svg>
+              The paper
+            </a>
+            <a class="button button-light" href="https://github.com/sidestr/spec">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></svg>
+              Source
+            </a>
+          </div>
+          <p class="status"><span class="dot" aria-hidden="true"></span><span><b>Draft 0.0.4, October 2026.</b> Chains run beside both the BLAKE2b testnet4 and stock testnet4, at levels 1 and 2, each validated in the browser by the same engine that runs datstr. Faucets, peg-ins from a browser key, an asset-and-pool chain and an EVM chain are live. One npm package, one command.</span></p>
+        </div>
+
+        <div class="visual-wrap">
+          <div class="panel">
+            <div class="panel-head"><span>one coin, there and back</span><span class="dots" aria-hidden="true"><span></span><span></span><span></span></span></div>
+            <div class="flow">
+              <div class="node you"><span class="tag">parent chain</span><p>Bitcoin, its BLAKE2b fork, or another siding</p></div>
+              <div class="link"><span>peg-in</span></div>
+              <div class="node hi"><span class="tag">siding</span><p>signed blocks, zero subsidy, supply equals the pegs</p></div>
+              <div class="link"><span>blocks</span></div>
+              <div class="node hi"><span class="tag">validators</span><p>any node, a phone in a tab included, checks every block and every rule</p></div>
+              <div class="link"><span>peg-out</span></div>
+              <div class="node out"><span class="tag">parent chain</span><p>or the refund path, after a timelock, with nobody's permission</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="principles">
+        <span class="principles-label">Built on</span>
+        <span class="principle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Zero subsidy</span>
+        <span class="principle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>No native token</span>
+        <span class="principle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Refund without permission</span>
+        <span class="principle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Validated in a tab</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how">
+    <div class="container">
+      <p class="kicker">How it works</p>
+      <h2 class="section-title">Bitcoin's rules, one added, one removed.</h2>
+      <p class="section-intro">Coins come from the parent, blocks come from signers, and the rules come from documents each node chooses to adopt.</p>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v2"/></svg></div>
+          <h3>Pegged coins</h3>
+          <p>A peg-in is a taproot output on the parent whose key path is the peg holders' and whose script path refunds the pegger after a timelock. The sidechain mints exactly what is pegged and nothing else. A dead sidechain costs time, not coins.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 19c3-.5 4-3 6-3s2 3 4 3 3-6 6-11"/><path d="M4 22h16"/></svg></div>
+          <h3>Signed blocks</h3>
+          <p>A block must carry a signature satisfying the chain's challenge, in the shape <a href="https://github.com/bitcoin/bips/blob/master/bip-0325.mediawiki">BIP 325</a> gave signet, and the subsidy is zero. Fees go to the signer.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 3h9l4 4v14H6V3Z"/><path d="M14 3v5h5"/><path d="m9 14 2 2 4-4"/></svg></div>
+          <h3>Rules as documents</h3>
+          <p>A rule change is a signed document with an activation height. A node follows the keys its operator chose, shows the text before applying anything new, and refuses what it did not adopt. Signers can stall a chain; they cannot change it.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band" id="levels">
+    <div class="container">
+      <p class="kicker">Levels</p>
+      <h2 class="section-title">Trust what you have to, and nothing more.</h2>
+      <div class="layers-grid">
+        <div class="steps">
+          <div class="step"><span class="step-number">1</span><div><p class="k">Signed</p><h3>One or a few signers</h3><p>Validators check every rule and trust the signers for which pegs exist and for ordering. For coins with no value.</p></div></div>
+          <div class="step"><span class="step-number">2</span><div><p class="k">Proven</p><h3>A parent view</h3><p>Validators also hold the parent's headers and peg outputs, and refuse a peg-in claim they cannot verify.</p></div></div>
+          <div class="step"><span class="step-number">3</span><div><p class="k">Federated</p><h3>Rotation and recovery</h3><p>Several independent signers, a rotation, and a path back to the parent if they all vanish. Liveness is the only thing trusted.</p></div></div>
+          <div class="step"><span class="step-number">↳</span><div><p class="k">Nesting</p><h3>Sidings of sidings</h3><p>A parent may be a siding. Coins flow down by peg-in and up by peg-out; the parent's blocks are the child's clock, and trust compounds with depth.</p></div></div>
+        </div>
+        <div class="card" id="chains">
+          <div class="card-head"><span>Chains</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="8" width="7" height="8" rx="2"/><rect x="14" y="8" width="7" height="8" rx="2"/><path d="M10 12h4"/></svg></div>
+          <div class="card-scroll">
+            <table>
+              <tr><th>chain</th><th>parent</th><th>pegs</th><th>prefix</th><th>genesis</th></tr>
+              <tr><td><code>sidestr:txbt4-siding</code></td><td class="m">Knots BLAKE2b testnet4</td><td>4 × 25 tBTC</td><td><code>ts</code></td><td class="m"><code>0864df37…987f</code></td></tr>
+              <tr><td><code>sidestr:aatest</code></td><td class="m">Knots BLAKE2b testnet4</td><td>25 tBTC</td><td><code>ta</code></td><td class="m"><code>63993fae…7a7e</code></td></tr>
+              <tr><td><code>sidestr:aastage</code></td><td class="m">Knots BLAKE2b testnet4</td><td>25 tBTC</td><td><code>tg</code></td><td class="m"><code>580c4ad4…dff6</code></td></tr>
+            </table>
+          </div>
+          <p class="card-foot">These are a sample. More chains are in the <a href="https://play-grounds.github.io/sidestr/">directory</a>, including ones beside stock testnet4, a level-2 federation, an asset-and-pool chain and an EVM chain.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="browser">
+    <div class="container build-grid">
+      <div class="prose">
+        <p class="kicker">In your browser</p>
+        <h2 class="section-title">Validate a sidechain from a tab.</h2>
+        <p>A siding is an overlay on the same engine that validates Bitcoin, stock or its BLAKE2b fork, in a tab: the network beside its parent, and one rule for the block signature, evaluated by the engine's own script interpreter. A validator needs no key, no hash and no permission, syncs from any mirror, and agrees with the producer at every height or says exactly where it stopped. Genesis is deterministic from the chain document: the same file gives the same block 0, byte for byte.</p>
+        <h3>One per project, per agent, per afternoon</h3>
+        <p>Blocks are receipts for transactions. A producer idles when it has nothing to include and keeps a heartbeat so timelocks keep moving. A chain is a JSON document and a key, which makes a siding cheap enough to make one per project, per agent, or per afternoon.</p>
+      </div>
+      <div class="code-window" role="img" aria-label="A validator in a tab: no key, no hash, no permission; sync from any mirror; check every block and every rule; agree at every height or say where it stopped.">
+        <div class="code-header"><span class="dots" aria-hidden="true"><span></span><span></span><span></span></span><span class="code-filename">validator, in a tab</span><span></span></div>
+        <ol>
+          <li><span class="c"># no key, no hash, no permission</span></li>
+          <li><span><span class="kw">load</span> <span class="fn">chain.json</span> → block 0, byte for byte</span></li>
+          <li><span><span class="kw">sync</span> <span class="fn">blocks</span> from any mirror</span></li>
+          <li><span><span class="kw">check</span> <span class="fn">signature</span> against the challenge</span></li>
+          <li><span><span class="kw">check</span> <span class="fn">every rule</span> you adopted</span></li>
+          <li><span>&nbsp;</span></li>
+          <li><span class="ok">✓ agrees at every height, or says where it stopped</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="principles" style="padding-top:0">
+    <div class="container stands-layout">
+      <div>
+        <p class="kicker">Principles</p>
+        <h2 class="section-title">What it stands on</h2>
+      </div>
+      <ul class="stands-list">
+        <li><div>Bitcoin's rules, run by the same engine.<br><span>A sidechain transaction is a Bitcoin transaction, and a phone that validates one validates the other.</span></div></li>
+        <li><div>No native token.<br><span>Issued assets exist for testing and say so. Only what is locked on the parent carries the parent's coin name.</span></div></li>
+        <li><div>Signers are replaceable and refundable.<br><span>If every signer disappears, the pegs come back after the timelock with nobody's permission.</span></div></li>
+        <li><div>Honest labels.<br><span>Level 1 is for coins with no value, and the document says so on the label.</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="callout-section">
+    <div class="container">
+      <div class="callout">
+        <div>
+          <h2>A chain is a document and a key.</h2>
+          <p>One npm package, one command. Read the spec, or hand an agent the SKILL.md and let it peg in, run a validator, or make a chain of its own.</p>
+        </div>
+        <div class="callout-actions">
+          <a class="button button-dark" href="/spec/">Read the spec
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="button button-light" href="/SKILL.md">SKILL.md for agents</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-main">
+      <div>
+        <a class="brand" href="/" aria-label="sidestr home">
+          <svg class="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <rect width="40" height="40" rx="11" fill="#17211B"/>
+            <rect x="8.5" y="12" width="23" height="5" rx="2.5" fill="#F7F8F3"/>
+            <rect x="8.5" y="23" width="14" height="5" rx="2.5" fill="#ED7C2C"/>
+            <path d="M27 21v4.5" stroke="#F7F8F3" stroke-width="2.2" stroke-linecap="round" opacity=".55"/>
+          </svg>
+          <span class="brand-name">side<b>·</b>str</span>
+        </a>
+        <p class="footer-tagline">Signers order blocks. Users enforce the rules.</p>
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="/spec/">The spec</a>
+        <a href="/spec/paper/">The paper</a>
+        <a href="https://github.com/sidestr/spec">Spec source</a>
+        <a href="https://github.com/sidestr/sidestr.github.io">This page's source</a>
+        <a href="/SKILL.md">SKILL.md for agents</a>
+        <a href="https://datstr.com/">datstr</a>
+        <a href="https://bitcoin-kernel.com/">bitcoin-kernel</a>
+        <a href="https://jss.live/">JSS</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">sidestr: user activated sidechains. Draft 0.0.4, October 2026. This page makes no external calls.</div>
   </div>
-
-  <h2 class="shead">Levels</h2>
-  <div class="grid4">
-    <div><div class="k">1 · Signed</div><h3>One or a few signers</h3><p>Validators check every rule and trust the signers for which pegs exist and for ordering. For coins with no value.</p></div>
-    <div><div class="k">2 · Proven</div><h3>A parent view</h3><p>Validators also hold the parent's headers and peg outputs, and refuse a peg-in claim they cannot verify.</p></div>
-    <div><div class="k">3 · Federated</div><h3>Rotation and recovery</h3><p>Several independent signers, a rotation, and a path back to the parent if they all vanish. Liveness is the only thing trusted.</p></div>
-    <div><div class="k">Nesting</div><h3>Sidings of sidings</h3><p>A parent may be a siding. Coins flow down by peg-in and up by peg-out; the parent's blocks are the child's clock, and trust compounds with depth.</p></div>
-  </div>
-
-  <h2 class="shead">In your browser</h2>
-  <div class="prose">
-    <p>A siding is an overlay on the same engine that validates Bitcoin, stock or its BLAKE2b fork, in a tab: the network beside its parent, and one rule for the block signature, evaluated by the engine's own script interpreter. A validator needs no key, no hash and no permission, syncs from any mirror, and agrees with the producer at every height or says exactly where it stopped. Genesis is deterministic from the chain document: the same file gives the same block 0, byte for byte.</p>
-    <p>Blocks are receipts for transactions. A producer idles when it has nothing to include and keeps a heartbeat so timelocks keep moving. A chain is a JSON document and a key, which makes a siding cheap enough to make one per project, per agent, or per afternoon.</p>
-  </div>
-
-  <h2 class="shead">Chains</h2>
-  <table>
-    <tr><th>chain</th><th>parent</th><th>pegs</th><th>prefix</th><th>genesis</th></tr>
-    <tr><td><code>sidestr:txbt4-siding</code></td><td>Knots BLAKE2b testnet4</td><td>4 × 25 tBTC</td><td><code>ts</code></td><td><code>0864df37…987f</code></td></tr>
-    <tr><td><code>sidestr:aatest</code></td><td>Knots BLAKE2b testnet4</td><td>25 tBTC</td><td><code>ta</code></td><td><code>63993fae…7a7e</code></td></tr>
-    <tr><td><code>sidestr:aastage</code></td><td>Knots BLAKE2b testnet4</td><td>25 tBTC</td><td><code>tg</code></td><td><code>580c4ad4…dff6</code></td></tr>
-  </table>
-  <p class="prose">These are a sample. More chains are in the <a href="https://play-grounds.github.io/sidestr/">directory</a>, including ones beside stock testnet4, a level-2 federation, an asset-and-pool chain and an EVM chain.</p>
-
-  <h2 class="shead">What it stands on</h2>
-  <ul class="pr">
-    <li>Bitcoin's rules, run by the same engine, so a sidechain transaction is a Bitcoin transaction and a phone that validates one validates the other.</li>
-    <li>No native token. Issued assets exist for testing and say so. Only what is locked on the parent carries the parent's coin name.</li>
-    <li>Signers are replaceable and refundable. If every signer disappears, the pegs come back after the timelock with nobody's permission.</li>
-    <li>Level 1 is for coins with no value, and the document says so on the label.</li>
-  </ul>
-</div>
-
-<footer><div class="wrap">
-  <div class="links">
-    <a href="/spec/">The spec</a>
-    <a href="/spec/paper/">The paper</a>
-    <a href="https://github.com/sidestr/spec">Spec source</a>
-    <a href="https://github.com/sidestr/sidestr.github.io">This page's source</a>
-    <a href="/SKILL.md">SKILL.md for agents</a>
-    <a href="https://datstr.com/">datstr</a>
-    <a href="https://bitcoin-kernel.com/">bitcoin-kernel</a>
-    <a href="https://jss.live/">JSS</a>
-  </div>
-  <p class="fnote">sidestr: user activated sidechains. Draft 0.0.4, October 2026. This page makes no external calls.</p>
-</div></footer>
+</footer>
 </body>
 </html>
