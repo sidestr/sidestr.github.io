@@ -8,8 +8,8 @@
 <link rel="canonical" href="https://sidestr.com/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2317211b'/%3E%3Crect x='7' y='14' width='18' height='4' rx='2' fill='%23f7f8f3'/%3E%3Crect x='7' y='21' width='11' height='4' rx='2' fill='%23ed7c2c'/%3E%3C/svg%3E">
 <meta property="og:site_name" content="sidestr">
-<meta property="og:title" content="sidestr">
-<meta property="og:description" content="Signers order blocks; users enforce the rules. User activated sidechains beside a Bitcoin-family chain, stock or the BLAKE2b fork: signed blocks, no subsidy, pegged coins, rules as documents.">
+<meta property="og:title" content="sidestr — user activated sidechains">
+<meta property="og:description" content="User activated sidechains beside Bitcoin, stock or its BLAKE2b fork. Signers order blocks; users enforce the rules: signed blocks, no subsidy, pegged coins, rules as documents.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://sidestr.com/">
 <meta property="og:image" content="https://sidestr.com/og.png?v=2">
@@ -17,8 +17,8 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="sidestr: signers order blocks, users enforce the rules">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="sidestr">
-<meta name="twitter:description" content="Signers order blocks; users enforce the rules. User activated sidechains beside Bitcoin, stock or its BLAKE2b fork.">
+<meta name="twitter:title" content="sidestr — user activated sidechains">
+<meta name="twitter:description" content="User activated sidechains beside Bitcoin, stock or its BLAKE2b fork. Signers order blocks; users enforce the rules.">
 <meta name="twitter:image" content="https://sidestr.com/og.png?v=2">
 <style>
   :root{
@@ -243,7 +243,7 @@
         <path d="M27 21v4.5" stroke="#F7F8F3" stroke-width="2.2" stroke-linecap="round" opacity=".55"/>
       </svg>
       <span class="brand-name">side<b>·</b>str</span>
-      <span class="version">draft 0.0.4</span>
+      <span class="version">draft 0.0.5</span>
     </a>
     <nav class="nav-links" aria-label="Main navigation">
       <a href="#how">How it works</a>
@@ -276,7 +276,7 @@
             <span class="line">Signers order blocks.</span>
             <span class="line">Users enforce the <span class="headline-accent">rules.</span></span>
           </h1>
-          <p class="hero-copy">sidestr is a way to run a chain beside Bitcoin: its transaction rules, <strong>blocks that are valid because they are signed</strong>, no subsidy, and <strong>every coin a coin locked on the parent</strong> with a refund path. The parent is any Bitcoin-family chain, stock or the BLAKE2b fork, mainnet or test, or another siding. The rules are documents with activation heights, and a node applies one because its operator adopted it.</p>
+          <p class="hero-copy">sidestr is a way to run a chain beside Bitcoin: its transaction rules, <strong>blocks that are valid because they are signed</strong>, no subsidy, and <strong>every coin a coin locked on the parent</strong>, whose output can carry a refund path back to the pegger. The parent is any Bitcoin-family chain, stock or the BLAKE2b fork, mainnet or test, or another siding. The rules are documents with activation heights, and a node applies one because its operator adopted it.</p>
           <div class="hero-ctas">
             <a class="button button-dark" href="/spec/">Read the spec
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -290,7 +290,7 @@
               Source
             </a>
           </div>
-          <p class="status"><span class="dot" aria-hidden="true"></span><span><b>Draft 0.0.4, October 2026.</b> Chains run beside both the BLAKE2b testnet4 and stock testnet4, at levels 1 and 2, each validated in the browser by the same engine that runs datstr. Faucets, peg-ins from a browser key, an asset-and-pool chain and an EVM chain are live. One npm package, one command.</span></p>
+          <p class="status"><span class="dot" aria-hidden="true"></span><span><b>Draft 0.0.5, October 2026.</b> Chains run beside both the BLAKE2b testnet4 and stock testnet4, at levels 1 and 2, each validated in the browser by the same engine that runs datstr. Faucets, peg-ins from a browser key, an asset-and-pool chain and an EVM chain are live. One npm package, one command.</span></p>
         </div>
 
         <div class="visual-wrap">
@@ -454,7 +454,7 @@
         <a href="https://jss.live/">JSS</a>
       </nav>
     </div>
-    <div class="footer-bottom">sidestr: user activated sidechains. Draft 0.0.4, October 2026. This page makes no external calls.</div>
+    <div class="footer-bottom">sidestr: user activated sidechains. Draft 0.0.5, October 2026. This page makes no external calls.</div>
   </div>
 </footer>
 </body>
